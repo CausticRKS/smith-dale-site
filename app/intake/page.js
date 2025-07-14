@@ -10,6 +10,32 @@ export default function IntakePage() {
   const [residentialProof, setResidentialProof] = useState(false);
   const [commercialAgreement, setCommercialAgreement] = useState(false);
   const [commercialProof, setCommercialProof] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xzzvpaoz", {
+        method: "POST",
+        body: data,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setFormSubmitted(true);
+        form.reset();
+      } else {
+        alert("There was an error submitting the form.");
+      }
+    } catch (error) {
+      alert("There was an error submitting the form.");
+    }
+  };
 
   return (
     <div className="min-h-screen py-20 px-6 bg-black text-white">
@@ -20,11 +46,7 @@ export default function IntakePage() {
         className="max-w-3xl mx-auto bg-gradient-to-br from-red-800/80 to-gray-900/90 p-10 rounded-xl shadow-xl"
       >
         <h1 className="text-4xl font-bold mb-8 text-center">Client Intake Form</h1>
-        <form
-          action="https://formspree.io/f/xzzvpaoz"
-          method="POST"
-          className="space-y-6"
-        >
+        <form onSubmit={handleSubmit} className="space-y-6">
           <input type="hidden" name="_subject" value="New Intake Submission" />
 
           <div>
@@ -230,6 +252,20 @@ export default function IntakePage() {
             Submit Form
           </button>
         </form>
+
+        <AnimatePresence>
+          {formSubmitted && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.4 }}
+              className="mt-6 p-4 text-green-400 border border-green-600 rounded bg-green-900/20 text-center"
+            >
+              ✅ Your form has been submitted successfully.
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );
