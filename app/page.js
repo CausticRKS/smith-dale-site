@@ -41,7 +41,7 @@ export default function HomePage() {
             style={{ maxWidth: '100%', height: 'auto' }}
           />
           <p className="text-lg text-gray-400 max-w-xl mx-auto mb-10">
-            Real-time surveillance system monitoring — because your security deserves active oversight.
+            Real-time surveillance system monitoring — because playback isn't protection.
           </p>
           <div
             ref={kcRef}
@@ -126,7 +126,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-gray-800 opacity-80 z-10" />
           <div className="relative z-20 p-8 text-white">
             <p className="max-w-2xl mx-auto mb-4">
-              Real protection comes from vigilance — not a body in a chair. I personally monitor all camera feeds, ensuring that every alert and every moment of downtime is watched by someone who actually cares about what's happening. I've been a victim of theft and vandalism myself, and I take this responsibility seriously. I know how damaging it is to have your property violated — emotionally and financially — and I don't take that lightly.
+              Real protection comes from vigilance, not a body in a chair. I personally monitor all camera feeds, ensuring that every alert and every moment of downtime is watched by someone who actually cares about what's happening. I've been a victim of theft and vandalism myself, and I take this responsibility seriously. I know how damaging it is to have your property violated — emotionally and financially — and I don't take that lightly.
             </p>
             <ul className="list-disc list-inside text-sm max-w-2xl mx-auto space-y-1">
               <li>No third-party monitoring centers or outsourcing.</li>
