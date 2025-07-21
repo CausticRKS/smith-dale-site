@@ -40,7 +40,7 @@ export default function HomePage() {
             className={`mx-auto mb-6 transition-all duration-1000 ease-out transform ${logoInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ maxWidth: '100%', height: 'auto' }}
           />
-          <p className="text-small text-gray-400 max-w-xl mx-auto mb-10">
+          <p className="text-small text-gray-400 max-w-2xl mx-auto mb-10">
             Real-time surveillance system monitoring — because playback isn't protection.
           </p>
           <div
