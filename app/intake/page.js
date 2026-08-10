@@ -4,12 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function IntakePage() {
-  const [propertyType, setPropertyType] = useState("Residential");
-  const [monitoringHours, setMonitoringHours] = useState("Overnight");
-  const [residentialAgreement, setResidentialAgreement] = useState(false);
-  const [residentialProof, setResidentialProof] = useState(false);
-  const [commercialAgreement, setCommercialAgreement] = useState(false);
-  const [commercialProof, setCommercialProof] = useState(false);
+  const [manufacturer, setManufacturer] = useState("Dell");
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -18,7 +13,7 @@ export default function IntakePage() {
     const data = new FormData(form);
 
     try {
-      const response = await fetch("https://formspree.io/f/xzzvpaoz", {
+      const response = await fetch("https://formspree.io/f/mwlelrjg", {
         method: "POST",
         body: data,
         headers: {
@@ -29,6 +24,7 @@ export default function IntakePage() {
       if (response.ok) {
         setFormSubmitted(true);
         form.reset();
+        setManufacturer("Dell");
       } else {
         alert("There was an error submitting the form.");
       }
@@ -37,222 +33,182 @@ export default function IntakePage() {
     }
   };
 
+  const fieldClasses =
+    "w-full p-3 rounded-lg bg-[#F7F2E8] border border-[#A58D69] text-[#142541] placeholder:text-[#756A5B] focus:outline-none focus:ring-2 focus:ring-[#B22234] focus:border-[#B22234] transition-colors";
+
+  const selectClasses =
+    "w-full p-3 rounded-lg bg-[#F7F2E8] border border-[#A58D69] text-[#142541] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#B22234] focus:border-[#B22234] transition-colors";
+
   return (
-    <div className="min-h-screen py-20 px-6 bg-black text-white">
+    <div className="min-h-screen py-20 px-6 bg-[#D8C6A5] text-[#142541]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-3xl mx-auto bg-gradient-to-br from-red-800/80 to-gray-900/90 p-10 rounded-xl shadow-xl"
+        className="max-w-3xl mx-auto bg-[#EADDC5] p-10 rounded-2xl border border-[#B9A27C] shadow-[0_18px_45px_rgba(20,37,65,0.22)]"
       >
-        <h1 className="text-4xl font-bold mb-8 text-center">Client Intake Form</h1>
+        <div className="w-20 h-1 bg-[#B22234] mx-auto mb-6 rounded-full" />
+
+        <h1 className="text-4xl font-bold mb-8 text-center text-[#1F355E]">
+          Client Intake Form
+        </h1>
+
         <form onSubmit={handleSubmit} className="space-y-6">
-          <input type="hidden" name="_subject" value="New Intake Submission" />
+          <input
+            type="hidden"
+            name="_subject"
+            value="New Smith-Dale Client Intake Submission"
+          />
 
+          {/* Full Name */}
           <div>
-            <label className="block mb-2 text-sm font-medium">Full Name</label>
-            <input name="fullName" type="text" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
+            <label className="block mb-2 text-sm font-semibold text-[#1F355E]">
+              Full Name
+            </label>
+
+            <input
+              name="fullName"
+              type="text"
+              className={fieldClasses}
+              required
+            />
           </div>
 
+          {/* Email */}
           <div>
-            <label className="block mb-2 text-sm font-medium">Email Address</label>
-            <input name="email" type="email" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
+            <label className="block mb-2 text-sm font-semibold text-[#1F355E]">
+              Email Address
+            </label>
+
+            <input
+              name="email"
+              type="email"
+              className={fieldClasses}
+              required
+            />
           </div>
 
+          {/* Phone */}
           <div>
-            <label className="block mb-2 text-sm font-medium">Phone Number</label>
-            <input name="phone" type="tel" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
+            <label className="block mb-2 text-sm font-semibold text-[#1F355E]">
+              Phone Number
+            </label>
+
+            <input
+              name="phone"
+              type="tel"
+              className={fieldClasses}
+              required
+            />
           </div>
 
+          {/* Address */}
           <div>
-            <label className="block mb-2 text-sm font-medium">Street Address</label>
-            <input name="address" type="text" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
+            <label className="block mb-2 text-sm font-semibold text-[#1F355E]">
+              Street Address
+            </label>
+
+            <input
+              name="address"
+              type="text"
+              className={fieldClasses}
+              required
+            />
           </div>
 
+          {/* City / State / ZIP */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block mb-2 text-sm font-medium">City</label>
-              <input name="city" type="text" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
+              <label className="block mb-2 text-sm font-semibold text-[#1F355E]">
+                City
+              </label>
+
+              <input
+                name="city"
+                type="text"
+                className={fieldClasses}
+                required
+              />
             </div>
+
             <div>
-              <label className="block mb-2 text-sm font-medium">State</label>
-              <input name="state" type="text" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
+              <label className="block mb-2 text-sm font-semibold text-[#1F355E]">
+                State
+              </label>
+
+              <input
+                name="state"
+                type="text"
+                className={fieldClasses}
+                required
+              />
             </div>
+
             <div>
-              <label className="block mb-2 text-sm font-medium">ZIP</label>
-              <input name="zip" type="text" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
+              <label className="block mb-2 text-sm font-semibold text-[#1F355E]">
+                ZIP
+              </label>
+
+              <input
+                name="zip"
+                type="text"
+                className={fieldClasses}
+                required
+              />
             </div>
           </div>
 
+          {/* Computer Manufacturer */}
           <div>
-            <label className="block mb-2 text-sm font-medium">Type of Property</label>
+            <label className="block mb-2 text-sm font-semibold text-[#1F355E]">
+              Computer Manufacturer
+            </label>
+
             <select
-              name="propertyType"
-              className="w-full p-3 rounded bg-gray-800 border border-gray-600 text-sm font-medium"
-              value={propertyType}
-              onChange={(e) => setPropertyType(e.target.value)}
+              name="manufacturer"
+              className={selectClasses}
+              value={manufacturer}
+              onChange={(e) => setManufacturer(e.target.value)}
               required
             >
-              <option>Residential</option>
-              <option>Commercial</option>
+              <option value="Dell">Dell</option>
+              <option value="HP">HP</option>
+              <option value="Lenovo">Lenovo</option>
+              <option value="Acer">Acer</option>
+              <option value="ASUS">ASUS</option>
+              <option value="Apple">Apple</option>
+              <option value="Microsoft">Microsoft</option>
+              <option value="Samsung">Samsung</option>
+              <option value="Custom Built">Custom Built</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
-          <AnimatePresence>
-            {propertyType === "Commercial" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div>
-                  <label className="block mb-2 text-sm font-medium">Company Name</label>
-                  <input name="company" type="text" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
-                </div>
-                <div className="mt-4">
-                  <label className="block mb-2 text-sm font-medium">Is this a construction site or temporary project?</label>
-                  <select name="isTemporary" className="w-full p-3 rounded bg-gray-800 border border-gray-600 text-sm font-medium" required>
-                    <option>No</option>
-                    <option>Yes - Construction Site</option>
-                    <option>Yes - Temporary Project</option>
-                  </select>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
+          {/* Issue Description */}
           <div>
-            <label className="block mb-2 text-sm font-medium">Number of Cameras</label>
-            <select name="cameraCount" className="w-full p-3 rounded bg-gray-800 border border-gray-600 text-sm font-medium" required>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9+</option>
-            </select>
-          </div>
+            <label className="block mb-2 text-sm font-semibold text-[#1F355E]">
+              Please Describe Your Issue
+            </label>
 
-          <div>
-            <label className="block mb-2 text-sm font-medium">Preferred Monitoring Hours</label>
-            <select
-              name="monitoringHours"
-              className="w-full p-3 rounded bg-gray-800 border border-gray-600 text-sm font-medium"
-              value={monitoringHours}
-              onChange={(e) => setMonitoringHours(e.target.value)}
+            <textarea
+              name="issueDescription"
+              rows="6"
+              className={fieldClasses}
+              placeholder="Please describe the problem you're experiencing with your computer..."
               required
-            >
-              <option>Overnight</option>
-              <option>Daytime</option>
-              <option>Custom</option>
-            </select>
+            />
           </div>
 
-          <AnimatePresence>
-            {monitoringHours === "Custom" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.3 }}
-              >
-                <label className="block mb-2 text-sm font-medium">Specify Your Preferred Monitoring Hours</label>
-                <input name="customMonitoringHours" type="text" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <div>
-            <label className="block mb-2 text-sm font-medium">Type of Surveillance System</label>
-            <input name="systemType" type="text" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-medium">Monitoring Software Used</label>
-            <input name="softwareUsed" type="text" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-medium">Remote Access Method</label>
-            <input name="accessMethod" type="text" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-medium">Do you have authorization to access the cameras?</label>
-            <select name="authorizedAccess" className="w-full p-3 rounded bg-gray-800 border border-gray-600 text-sm font-medium" required>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-medium">Do you grant CMS permission to monitor your system?</label>
-            <select name="cmsPermission" className="w-full p-3 rounded bg-gray-800 border border-gray-600 text-sm font-medium" required>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-medium">Describe Your Surveillance Needs</label>
-            <textarea name="description" rows="5" className="w-full p-3 rounded bg-gray-800 border border-gray-600" required />
-          </div>
-
-          {/* Residential Conditions */}
-          <AnimatePresence>
-            {propertyType === "Residential" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="space-y-4">
-                  <label className="flex items-center space-x-2">
-                    <input name="residentialAgreement" type="checkbox" checked={residentialAgreement} onChange={(e) => setResidentialAgreement(e.target.checked)} required />
-                    <span className="text-sm">I understand that I will be required to read and sign a Residential Service Policy Agreement.</span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input name="residentialProof" type="checkbox" checked={residentialProof} onChange={(e) => setResidentialProof(e.target.checked)} required />
-                    <span className="text-sm">I acknowledge I will be required to submit additional documentation related to ownership or proof of residency.</span>
-                  </label>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Commercial Conditions */}
-          <AnimatePresence>
-            {propertyType === "Commercial" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="space-y-4">
-                  <label className="flex items-center space-x-2">
-                    <input name="commercialAgreement" type="checkbox" checked={commercialAgreement} onChange={(e) => setCommercialAgreement(e.target.checked)} required />
-                    <span className="text-sm">I agree to abide by the Commercial Service Terms provided by CMS.</span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input name="commercialProof" type="checkbox" checked={commercialProof} onChange={(e) => setCommercialProof(e.target.checked)} required />
-                    <span className="text-sm">I understand that I must provide appropriate authorization and business documentation.</span>
-                  </label>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <button type="submit" className="w-full py-3 bg-red-600 hover:bg-red-700 rounded text-white font-semibold">
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full py-3.5 bg-[#B22234] hover:bg-[#941D2B] rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200"
+          >
             Submit Form
           </button>
         </form>
 
+        {/* Success Message */}
         <AnimatePresence>
           {formSubmitted && (
             <motion.div
@@ -260,9 +216,10 @@ export default function IntakePage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.4 }}
-              className="mt-6 p-4 text-green-400 border border-green-600 rounded bg-green-900/20 text-center"
+              className="mt-6 p-4 text-[#244B2C] border border-[#6E8D62] rounded-lg bg-[#DCE8D2] text-center font-medium"
             >
-              ✅ Your form has been submitted successfully.
+              ✓ Your request has been submitted successfully. Smith-Dale will
+              be in touch with you soon.
             </motion.div>
           )}
         </AnimatePresence>
