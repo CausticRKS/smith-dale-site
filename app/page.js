@@ -9,6 +9,9 @@ export default function HomePage() {
   const [comCardRef, comInView] = useInView({ triggerOnce: false, threshold: 0.2 });
   const [msgCardRef, msgInView] = useInView({ triggerOnce: false, threshold: 0.2 });
   const [kcRef, kcInView] = useInView({ triggerOnce: false, threshold: 0.2 });
+  const [pickupCardRef, pickupInView] = useInView({ triggerOnce: false, threshold: 0.2, });
+
+const [hoursCardRef, hoursInView] = useInView({ triggerOnce: false, threshold: 0.2, });
 
   const [kcTextIndex, setKcTextIndex] = useState(0);
   const [fade, setFade] = useState(true);
@@ -112,7 +115,7 @@ export default function HomePage() {
             }`}
           >
             <img
-              src="/prairiefire.png"
+              src="/90showroom.png"
               alt="Residential"
               className="absolute inset-0 w-full h-full object-cover z-0"
             />
@@ -156,7 +159,7 @@ export default function HomePage() {
             }`}
           >
             <img
-              src="/olathecourt.png"
+              src="/xchange.png"
               alt="Remote"
               className="absolute inset-0 w-full h-full object-cover z-0"
             />
@@ -187,6 +190,91 @@ export default function HomePage() {
               </ul>
             </div>
           </div>
+{/* Pickup / On-Site */}
+
+<div
+  ref={pickupCardRef}
+  className={`relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-1000 ease-out transform ${
+    pickupInView
+      ? "opacity-100 translate-y-0"
+      : "opacity-0 translate-y-10"
+  }`}
+>
+  <img
+    src="/prairiefire.png"
+    alt="Pickup and On-Site Computer Service"
+    className="absolute inset-0 w-full h-full object-cover z-0"
+  />
+
+  <div className="absolute inset-0 bg-gradient-to-br from-[#1F355E]/90 via-[#3C557A]/85 to-[#8E2432]/85 z-10" />
+
+  <div className="relative z-20 p-8 text-white">
+    <h3 className="text-2xl font-semibold mb-4">
+      🚗 Pickup, Drop-Off & On-Site Service
+    </h3>
+
+    <p className="mb-4">
+      <span className="font-semibold">
+        Computer Repair Without the Storefront
+      </span>
+      <br />
+      Smith-Dale offers scheduled pickup, return, and on-site service
+      throughout the Kansas City metro, making repairs convenient without
+      requiring a traditional walk-in shop.
+    </p>
+
+    <ul className="list-disc list-inside text-sm space-y-1">
+      <li>Scheduled computer and laptop pickup</li>
+      <li>Residential on-site troubleshooting</li>
+      <li>Desktop setup and equipment installation</li>
+      <li>Home Wi-Fi, printer and network assistance</li>
+      <li>All physical service is by appointment only</li>
+    </ul>
+  </div>
+</div>
+
+
+{/* Hours */}
+
+<div
+  ref={hoursCardRef}
+  className={`relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-1000 ease-out transform ${
+    hoursInView
+      ? "opacity-100 translate-y-0"
+      : "opacity-0 translate-y-10"
+  }`}
+>
+  <img
+    src="/olathecourt.png"
+    alt="Smith-Dale Service Hours"
+    className="absolute inset-0 w-full h-full object-cover z-0"
+  />
+
+  <div className="absolute inset-0 bg-gradient-to-br from-[#B22234]/90 via-[#8E2432]/85 to-[#1F355E]/85 z-10" />
+
+  <div className="relative z-20 p-8 text-white">
+    <h3 className="text-2xl font-semibold mb-4">
+      🕒 Hours & Availability
+    </h3>
+
+    <p className="mb-4">
+      <span className="font-semibold">
+        Flexible Scheduling for the Kansas City Metro
+      </span>
+      <br />
+      Smith-Dale currently operates by appointment, allowing service to be
+      scheduled around your availability whenever possible.
+    </p>
+
+    <ul className="list-disc list-inside text-sm space-y-1">
+      <li>Monday–Friday: Evening appointments</li>
+      <li>Saturday–Sunday: Daytime and evening appointments</li>
+      <li>Remote support available by appointment</li>
+      <li>Pickup and drop-off scheduled in advance</li>
+      <li>Contact Smith-Dale to arrange a service time</li>
+    </ul>
+  </div>
+</div>
         </div>
       </section>
 
@@ -264,8 +352,8 @@ export default function HomePage() {
           </h2>
 
           <p className="text-[#3C557A] max-w-2xl mx-auto">
-            Need your computer fixed? Reach out today for free diagnostics and
-            honest advice.
+            Need your computer fixed? Reach out today for free diagnostics,
+honest advice, and to schedule an appointment. You can also contact us by phone at 913-363-6902
           </p>
 
           <a
